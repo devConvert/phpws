@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+<body>
+
+    <form action="http://example.com/log" method="post">
+        <input type="hidden" id="evts" name="evts" />
+        <input type="submit" value="submit" />
+    </form>
+
+    <script>
+
+    var evts = [
+	    [
+	        "topic3",                           // topic
+	        ["A", "B", "C"],                    // data - must be a json array
+            "evt0",                             // uid
+            "2017-01-01 00:00:00",              // dt
+	        ["id1", "id2", "id3"],              // headers - must be a json array
+            ["int", "varchar(20)", "decimal"],  // mysql data types
+	        "remarkssss"                        // remark
+	    ],
+	    [
+	        "topic2",                           // topic
+	        ["D", "E", "F"],                    // data - must be a json array
+            "evt1",                             // uid
+            "2017-01-01 00:00:00",              // dt
+	        ["id4", "id5", "id6"],              // headers - must be a json array
+            ["text", "float", "text"],          // mysql data types
+	        "remarks334"                        // remark
+	    ]
+    ];
+
+    var evtsJSON = JSON.stringify(evts);
+    document.getElementById("evts").value = evtsJSON;
+
+    //console.log(data);
+
+    </script>
+
+</body>
+</html>
