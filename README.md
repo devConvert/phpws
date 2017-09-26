@@ -16,15 +16,14 @@ phpws is a php framework that provides the following infrastructure:
 
 ### phpws + nginx + php7
 
-To install the Offertoro middletier web service, first ssh into a fresh virtual machine and then:
+To install the phpws first ssh into a fresh virtual machine and then:
 ```
 $ sudo mkdir /var/www
 $ sudo mkdir /var/www/html
 $ sudo yum install -y git
-$ sudo git clone https://github.com/offertoro/phpws.git /var/www/html
+$ sudo git clone https://github.com/giladbbn2/phpws.git /var/www/html
 ```
-Then enter email and password of your github user. Your user must be a contributer to the phpws repo
-in order for it to checkout. Then run the server main installation script:
+Then run the server main installation script:
 ```
 $ sudo /var/www/html/scripts/install_server.sh
 ```
