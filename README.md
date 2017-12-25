@@ -27,7 +27,7 @@ Then run the server main installation script:
 ```
 $ sudo /var/www/html/scripts/install_server.sh
 ```
-To test if the server is up and running navigate to `localhost/ws/1/base/ping`. The result should
+To test if the server is up and running navigate to `localhost/ping`. The result should
 be `{"code":200,"value":"pong"}`.
 
 ### mysql57
