@@ -74,15 +74,15 @@ The "test2" method is reachable at `localhost/ws/1/main/test2/a/b` and outputs "
 
 ## Managing crons
 
-Running crons run on the nginx user.
+phpws allows managing crons running on the nginx user. By default, direct access to the Base controller via url is not allowed so extending the Base controller exposes the these methods (cab be overriden in child class for security reasons).
 There are 5 methods for managing crons on the local host:
-* `localhost/ws/1/base/get_crons` - gets all crons saved to the file /var/www/html/includes/crontab.txt and also all crons currently running.
+* `localhost/ws/1/ctrl/get_crons` - gets all crons saved to the file /var/www/html/includes/crontab.txt and also all crons currently running.
 
-* `localhost/ws/1/base/start_crons` - start all crons saved to the file.
+* `localhost/ws/1/ctrl/start_crons` - start all crons saved to the file.
 
-* `localhost/ws/1/base/stop_crons` - stop all crons.
+* `localhost/ws/1/ctrl/stop_crons` - stop all crons.
 
-* `localhost/ws/1/base/add_cron_to_file/{b64_cron}` - add another cron to the file. The {b64_cron} parameter is the base64 representation of the cron format. For example, to add a cron with the format `0 */1 * * * sudo service php-fpm reload` the following uri should be invoked `localhost/ws/1/base/add_cron_to_file/MCAqLzEgKiAqICogc3VkbyBzZXJ2aWNlIHBocC1mcG0gcmVsb2Fk`.
+* `localhost/ws/1/ctrl/add_cron_to_file/{b64_cron}` - add another cron to the file. The {b64_cron} parameter is the base64 representation of the cron format. For example, to add a cron with the format `0 */1 * * * sudo service php-fpm reload` the following uri should be invoked `localhost/ws/1/base/add_cron_to_file/MCAqLzEgKiAqICogc3VkbyBzZXJ2aWNlIHBocC1mcG0gcmVsb2Fk`.
 The added cron isn't started automatically.
 
-* `localhost/ws/1/base/remove_cron_from_file/{b64_cron}` - removes a cron from the file.
+* `localhost/ws/1/ctrl/remove_cron_from_file/{b64_cron}` - removes a cron from the file.
