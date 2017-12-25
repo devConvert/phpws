@@ -74,7 +74,7 @@ The "test2" method is reachable at `localhost/ws/1/main/test2/a/b` and outputs "
 
 ## Managing crons
 
-phpws allows managing crons running on the nginx user. By default, direct access to the Base controller via url is not allowed so extending the Base controller exposes the these methods (cab be overriden in child class for security reasons).
+phpws allows managing crons running on the nginx user. By default, direct access to the Base controller via url is not allowed so extending the Base controller allows the exposure of the these methods (can be overriden in child class for security reasons).
 There are 5 methods for managing crons on the local host:
 * `localhost/ws/1/ctrl/get_crons` - gets all crons saved to the file /var/www/html/includes/crontab.txt and also all crons currently running.
 
