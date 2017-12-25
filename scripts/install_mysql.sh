@@ -18,7 +18,7 @@ sudo yum install -y mysql-community-server
 # $ sudo mysqld --initialize
 # $ sudo mysqld_safe --skip-grant-tables &
 # $ mysql -u root
-# $ mysql> update mysql.user set authentication_string = password("ot-mysql-default-pass"), password_expired = 'N' where User='root';
+# $ mysql> update mysql.user set authentication_string = password("ot-mysql-default-pass"), password_expired = 'N', Host='%' where User='root';
 # $ mysql> exit
 # $ sudo service mysqld stop
 # $ sudo service mysqld start
