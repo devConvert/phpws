@@ -27,7 +27,7 @@ class BaseControllerV1
 	}
 
 	protected function is_admin(){
-		if (isset($_GET["user"]) && $_GET["user"] == PHPWSConfig::$admin_username && isset($_GET["pass"]) && $_GET["pass"] == PHPWSConfig::$admin_password)
+		if (isset($_GET["user"]) && isset($_GET["pass"]) && $_GET["user"] == PHPWSConfig::$admin_username && $_GET["pass"] == PHPWSConfig::$admin_password)
 			return true;
 
 		return false;
