@@ -1568,6 +1568,9 @@ class BaseControllerV1
 	/* Cron Methods */
 
 	public function start_crons(){
+		if (!$this->is_admin())
+			throw new Exception("must be an admin");
+
 		exec("crontab /var/www/html/includes/crontab.txt", $output);
 
 		return $output;
