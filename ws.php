@@ -27,28 +27,32 @@ if (!defined("IS_PROGRAM")){
 
 	$routing_key = array_shift($route);
 
-	if (array_key_exists($routing_key, PHPWSConfig::$routing)){
-		$route = PHPWSConfig::$routing[$routing_key];
-		$ws_ver = $route[0];
-		$ctrl = $route[1];
-		$method = $route[2];
-	} else {
-		$ws_ver = array_shift($route);
-
-		if (count($route) < 2)
-			die();
-
-		$ctrl = s(array_shift($route));
-		$method = strtolower(s(urldecode(array_shift($route))));
-	}
-
-	$ctrl_classname = get_ctrl_classname($ws_ver, $ctrl);
-
-	$params = array();
-	foreach ($route as $v)
-		$params[] = s(urldecode($v));
-
 	try {
+		if (array_key_exists($routing_key, PHPWSConfig::$routing)){
+			$route = PHPWSConfig::$routing[$routing_key];
+			$ws_ver = $route[0];
+			$ctrl = $route[1];
+			$method = $route[2];
+		} else {
+			$ws_ver = array_shift($route);
+
+			if (count($route) < 2)
+				throw new Exception("Not allowed");
+
+			$ctrl = s(array_shift($route));
+
+			if ($ctrl === "base" && !PHPWSConfig::$is_allow_direct_base_ctrl_call)
+				throw new Exception("Not allowed");
+
+			$method = strtolower(s(urldecode(array_shift($route))));
+		}
+
+		$ctrl_classname = get_ctrl_classname($ws_ver, $ctrl);
+
+		$params = array();
+		foreach ($route as $v)
+			$params[] = s(urldecode($v));
+
 		$reflectionMethod = new ReflectionMethod($ctrl_classname, $method);
 		$return_val = $reflectionMethod->invokeArgs(new $ctrl_classname(), $params);
 		$is_ws_error = false;

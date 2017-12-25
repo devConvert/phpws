@@ -21,6 +21,9 @@ class PHPWSConfig {
 	public static $admin_username = "phpwsadmin";
 	public static $admin_password = "admin";
 
+	// by default it is not allowed to call directly the base controller (only by routing)
+	public static $is_allow_direct_base_ctrl_call = false;
+
 	/*
 		$routing = array(
 			"log" => array("1", "main", "log")
