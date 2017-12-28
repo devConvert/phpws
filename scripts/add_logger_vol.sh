@@ -3,6 +3,9 @@
 
 This script must be executed with root privileges
 
+Usage:
+
+./add_logger_col.sh /log/0/topics
 
 */
 
