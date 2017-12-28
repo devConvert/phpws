@@ -213,8 +213,6 @@ class BaseControllerV1
 	/* Logging Methods */
 
 	protected function rolling_file_logger($topic = "", $data = "", $headers = "", $remark = "", $logs_basedir_vol_id = "", $mysql_data_types = "", $colDelimiter = "", $lineDelimiter = "", $fileExtenstion = "", $lineDateFormat = "", $dirNameDateFormat = "", $fileNameDateFormat = ""){
-		echo "asdfasdfasdfasdfasdf";die();
-
 		if ($data == "" || $topic == "")
 			return false;
 
@@ -269,7 +267,7 @@ class BaseControllerV1
 
 		// first character is always $lineDelimiter
 		$data_str = $lineDelimiter . implode($lineDelimiter, $rows);
-
+		echo $data_str;die();
 		$basedir = PHPWSConfig::$logs_basedir_vols[$logs_basedir_vol_id] . DS . $topic;
 		$high = date($dirNameDateFormat) . "";
 		$low = date($fileNameDateFormat) . "." . $fileExtenstion;
