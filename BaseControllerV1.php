@@ -267,11 +267,11 @@ class BaseControllerV1
 
 		// first character is always $lineDelimiter
 		$data_str = $lineDelimiter . implode($lineDelimiter, $rows);
-		echo $data_str;die();
+		
 		$basedir = PHPWSConfig::$logs_basedir_vols[$logs_basedir_vol_id] . DS . $topic;
 		$high = date($dirNameDateFormat) . "";
 		$low = date($fileNameDateFormat) . "." . $fileExtenstion;
-		
+		echo $basedir . DS . $high . DS . $low;die();
 		if (@file_put_contents($basedir . DS . $high . DS . $low, $data_str, FILE_APPEND) === false){
 			// $basedir always exists so $high dir may not, $low file will be created automatically if not exists
 
