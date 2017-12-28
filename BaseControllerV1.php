@@ -297,8 +297,10 @@ class BaseControllerV1
 				@file_put_contents($basedir . DS . "meta.config", $meta);
 			}
 
-			if (@file_put_contents($basedir . DS . $high . DS . $low, $data_str, FILE_APPEND) === false)
+			if (@file_put_contents($basedir . DS . $high . DS . $low, $data_str, FILE_APPEND) === false){
+				echo "error";die();
 				return false;
+			}
 		}
 
 		return true;
