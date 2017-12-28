@@ -213,6 +213,8 @@ class BaseControllerV1
 	/* Logging Methods */
 
 	protected function rolling_file_logger($topic = "", $data = "", $headers = "", $remark = "", $logs_basedir_vol_id = "", $mysql_data_types = "", $colDelimiter = "", $lineDelimiter = "", $fileExtenstion = "", $lineDateFormat = "", $dirNameDateFormat = "", $fileNameDateFormat = ""){
+		echo "asdfasdfasdfasdfasdf";die();
+
 		if ($data == "" || $topic == "")
 			return false;
 
