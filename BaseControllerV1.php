@@ -271,7 +271,7 @@ class BaseControllerV1
 		$basedir = PHPWSConfig::$logs_basedir_vols[$logs_basedir_vol_id] . DS . $topic;
 		$high = date($dirNameDateFormat) . "";
 		$low = date($fileNameDateFormat) . "." . $fileExtenstion;
-		
+		echo $data_str;die();
 		if (@file_put_contents($basedir . DS . $high . DS . $low, $data_str, FILE_APPEND) === false){
 			// $basedir always exists so $high dir may not, $low file will be created automatically if not exists
 
@@ -297,10 +297,8 @@ class BaseControllerV1
 				@file_put_contents($basedir . DS . "meta.config", $meta);
 			}
 
-			if (@file_put_contents($basedir . DS . $high . DS . $low, $data_str, FILE_APPEND) === false){
-				echo "error";die();
+			if (@file_put_contents($basedir . DS . $high . DS . $low, $data_str, FILE_APPEND) === false)
 				return false;
-			}
 		}
 
 		return true;
