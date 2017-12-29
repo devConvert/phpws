@@ -554,7 +554,7 @@ class BaseControllerV1
 			$response = $response[1];
 			$response = json_decode($response, true);
 
-			$result = json_decode($response["value"]);
+			$result = json_decode($response["value"], true);
 		}
 
 		return $result;
@@ -581,7 +581,7 @@ class BaseControllerV1
 		*/
 
 		if (isset($_POST["evt"]))
-			$this->evt = json_decode($_POST["evt"]);
+			$this->evt = json_decode($_POST["evt"], true);
 
 		if ($this->evt != ""){
 
