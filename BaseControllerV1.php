@@ -1568,7 +1568,7 @@ class BaseControllerV1
 
 	/* Cron Methods */
 
-	private function start_crons(){
+	protected function start_crons(){
 		if (!$this->is_admin())
 			throw new Exception("must be an admin");
 
@@ -1577,7 +1577,7 @@ class BaseControllerV1
 		return $output;
 	}
 
-	private function get_crons(){
+	protected function get_crons(){
 		if (!$this->is_admin())
 			throw new Exception("must be an admin");
 
@@ -1596,7 +1596,7 @@ class BaseControllerV1
 		return array("file" => $crons_arr, "crontab" => $output);
 	}
 
-	private function add_cron_to_file($b64_cron = ""){
+	protected function add_cron_to_file($b64_cron = ""){
 		if (!$this->is_admin())
 			throw new Exception("must be an admin");
 
@@ -1628,7 +1628,7 @@ class BaseControllerV1
 		return true;
 	}
 
-	private function remove_cron_from_file($b64_cron = ""){
+	protected function remove_cron_from_file($b64_cron = ""){
 		if (!$this->is_admin())
 			throw new Exception("must be an admin");
 
@@ -1652,7 +1652,7 @@ class BaseControllerV1
 		return true;
 	}
 
-	private function stop_crons(){
+	protected function stop_crons(){
 		if (!$this->is_admin())
 			throw new Exception("must be an admin");
 
