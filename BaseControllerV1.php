@@ -28,7 +28,7 @@ class BaseControllerV1
 
 	protected function is_admin(){
 
-		if (isset($_GET["user"]) && isset($_GET["pass"]) && urlencode($_GET["user"]) === urlencode(PHPWSConfig::$admin_username) && urlencode($_GET["pass"]) === urlencode(PHPWSConfig::$admin_password))
+		if (isset($_GET["user"]) && isset($_GET["pass"]) && $_GET["user"] === urlencode(PHPWSConfig::$admin_username) && $_GET["pass"] === urlencode(PHPWSConfig::$admin_password))
 			return true;
 
 		return false;
