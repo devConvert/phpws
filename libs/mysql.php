@@ -69,10 +69,10 @@ class Queryable {
                     // select
 
 					if (isset($assocKey[$sqlId]) && $assocKey[$sqlId] != "")
-						while ($row = mysql_fetch_array($result, $return_type))
+						while ($row = mysqli_fetch_array($result, $return_type))
 							$list[$row[$assocKey[$sqlId]]] = $row;
 					else
-						while ($row = mysql_fetch_array($result, $return_type))
+						while ($row = mysqli_fetch_array($result, $return_type))
 							$list[] = $row;
 
                     $out[] = $list;
