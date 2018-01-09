@@ -46,6 +46,9 @@ class Queryable {
     }
 
     public function query($sql, $assocKey = array()){
+
+		$return_type = ($this->is_fetch_assoc ? "MYSQL_ASSOC" : "MYSQL_NUM");
+
         $conn = $this->conn;
 
         $isArray = false;
@@ -65,17 +68,12 @@ class Queryable {
 
                     // select
 
-					if ($this->is_fetch_assoc){
-						if (isset($assocKey[$sqlId]) && $assocKey[$sqlId] != "")
-							while ($row = mysqli_fetch_assoc($result))
-								$list[$row[$assocKey[$sqlId]]] = $row;
-						else
-							while ($row = mysqli_fetch_assoc($result))
-								$list[] = $row;
-					} else {
-						while ($row = mysqli_fetch_array($result))
+					if (isset($assocKey[$sqlId]) && $assocKey[$sqlId] != "")
+						while ($row = mysql_fetch_array($result, $return_type))
+							$list[$row[$assocKey[$sqlId]]] = $row;
+					else
+						while ($row = mysql_fetch_array($result, $return_type))
 							$list[] = $row;
-					}
 
                     $out[] = $list;
                     //echo "Selected rows = ".mysqli_num_rows($result)."<br><br>";
