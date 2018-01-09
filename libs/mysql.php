@@ -30,6 +30,9 @@ class DB
 
 class Queryable {
     private $conn;
+	
+	public $is_fetch_assoc = true;
+
 
 
 
@@ -62,12 +65,17 @@ class Queryable {
 
                     // select
 
-                    if (isset($assocKey[$sqlId]) && $assocKey[$sqlId] != "")
-                        while ($row = mysqli_fetch_assoc($result))
-                            $list[$row[$assocKey[$sqlId]]] = $row;
-                    else
-                        while ($row = mysqli_fetch_assoc($result))
-                            $list[] = $row;
+					if ($this->is_fetch_assoc){
+						if (isset($assocKey[$sqlId]) && $assocKey[$sqlId] != "")
+							while ($row = mysqli_fetch_assoc($result))
+								$list[$row[$assocKey[$sqlId]]] = $row;
+						else
+							while ($row = mysqli_fetch_assoc($result))
+								$list[] = $row;
+					} else {
+						while ($row = mysqli_fetch_array($result))
+							$list[] = $row;
+					}
 
                     $out[] = $list;
                     //echo "Selected rows = ".mysqli_num_rows($result)."<br><br>";
