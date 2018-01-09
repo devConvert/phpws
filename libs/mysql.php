@@ -47,7 +47,7 @@ class Queryable {
 
     public function query($sql, $assocKey = array()){
 
-		$return_type = ($this->is_fetch_assoc ? "MYSQL_ASSOC" : "MYSQL_NUM");
+		$return_type = ($this->is_fetch_assoc ? "MYSQLI_ASSOC" : "MYSQLI_NUM");
 
         $conn = $this->conn;
 
