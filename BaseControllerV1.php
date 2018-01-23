@@ -612,12 +612,14 @@ class BaseControllerV1
 
 			$is_save_to_file = PHPWSConfig::$is_auto_save_log_to_file;
 
+					error_reporting( E_ALL );
+					ini_set('display_errors', 1);
+
 			// check for subscriptions
 			if (array_key_exists($topic, PHPWSConfig::$subscriptions)){
 				
 				$sub = PHPWSConfig::$subscriptions[$topic];
-				echo "ggg";error_reporting( E_ALL );
-ini_set('display_errors', 1);
+				echo "<pre>"; print_r($sub);
 				$ctrl_classname = get_ctrl_classname($sub[0], $sub[1]);
 				echo "bbb";
 
