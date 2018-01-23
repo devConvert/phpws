@@ -626,8 +626,8 @@ class BaseControllerV1
 					elseif ($is_save_to_file_local === true)
 						$is_save_to_file = true;
 
-				} catch (Exception $e){
-
+				} catch (Exception $ex){
+					$this->rolling_file_logger("phpws_errors", array($ex->getMessage()));
 				}
 			}
 
