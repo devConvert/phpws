@@ -579,7 +579,7 @@ class BaseControllerV1
 
 			$_POST["evts"] = json array of what $this->log() is expecting to receive
 		*/
-
+		die("1231231212123");
 		if (isset($_POST["evt"]))
 			$this->evt = json_decode($_POST["evt"], true);
 
