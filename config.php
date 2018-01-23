@@ -154,10 +154,10 @@ if (!function_exists("get_ctrl_classname")){
 		$ctrl_classname = ucfirst($ctrl) . "ControllerV" . $ws_ver;
 		
 		require_once MICROSERVICE_ROOT . DS . "BaseControllerV" . $ws_ver . ".php";
-		echo "ggg";
+		echo "<br>ggg1<br>";
 		if ($ctrl != "base")
 			@include_once INCLUDES_DIR . DS . $ctrl_classname . ".php";
-
+		echo "<br>ggg2<br>";
 		return $ctrl_classname;
 	}
 }
