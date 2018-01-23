@@ -612,19 +612,13 @@ class BaseControllerV1
 
 			$is_save_to_file = PHPWSConfig::$is_auto_save_log_to_file;
 
-					error_reporting( E_ALL );
-					ini_set('display_errors', 1);
-
 			// check for subscriptions
 			if (array_key_exists($topic, PHPWSConfig::$subscriptions)){
 				
 				$sub = PHPWSConfig::$subscriptions[$topic];
-				echo "<pre>"; print_r($sub);
 				$ctrl_classname = get_ctrl_classname($sub[0], $sub[1]);
-				echo "bbb";
 
 				try {
-					echo "<pre>"; print_r($data);
 					$reflectionMethod = new ReflectionMethod($ctrl_classname, $sub[2]);
 					$is_save_to_file_local = $reflectionMethod->invokeArgs(new $ctrl_classname(), $data);
 
@@ -634,11 +628,8 @@ class BaseControllerV1
 						$is_save_to_file = true;
 
 				} catch (Exception $ex){
-					die("123");
 					$this->rolling_file_logger("phpws_errors", array(array($ex->getMessage())));
 				}
-
-				die("444");
 			}
 
 			if ($is_save_to_file)
