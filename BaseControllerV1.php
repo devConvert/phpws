@@ -209,7 +209,7 @@ class BaseControllerV1
 		die("This routing points to a stub. In order to use this endpoint please extend the base controller and change the routing.");
 	}
 
-
+	
 	/* Logging Methods */
 
 	protected function rolling_file_logger($topic = "", $data = "", $headers = "", $remark = "", $logs_basedir_vol_id = "", $mysql_data_types = "", $colDelimiter = "", $lineDelimiter = "", $fileExtenstion = "", $lineDateFormat = "", $dirNameDateFormat = "", $fileNameDateFormat = ""){
@@ -618,6 +618,7 @@ class BaseControllerV1
 				$ctrl_classname = get_ctrl_classname($sub[0], $sub[1]);
 
 				try {
+					echo "<pre>"; print_r($data);
 					$reflectionMethod = new ReflectionMethod($ctrl_classname, $sub[2]);
 					$is_save_to_file_local = $reflectionMethod->invokeArgs(new $ctrl_classname(), $data);
 
@@ -627,8 +628,11 @@ class BaseControllerV1
 						$is_save_to_file = true;
 
 				} catch (Exception $ex){
+					die("123");
 					$this->rolling_file_logger("phpws_errors", array(array($ex->getMessage())));
 				}
+
+				die("444");
 			}
 
 			if ($is_save_to_file)
