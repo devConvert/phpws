@@ -614,9 +614,11 @@ class BaseControllerV1
 
 			// check for subscriptions
 			if (array_key_exists($topic, PHPWSConfig::$subscriptions)){
-				die($topic);
+				
 				$sub = PHPWSConfig::$subscriptions[$topic];
+				echo "1";
 				$ctrl_classname = get_ctrl_classname($sub[0], $sub[1]);
+				echo "2";
 
 				try {
 					echo "<pre>"; print_r($data);
