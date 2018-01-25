@@ -14,7 +14,7 @@ if (!defined("IS_ALLOW"))
 require_once __DIR__ . DIRECTORY_SEPARATOR . "config.php";
 @include_once INCLUDES_DIR . DS . "config.php";
 
-if (!defined("IS_PROGRAM")){	
+if (!defined("IS_PROGRAM")){
 
 	$uri = $_SERVER["REQUEST_URI"];
 

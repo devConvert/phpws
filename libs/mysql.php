@@ -30,8 +30,10 @@ class DB
 
 class Queryable {
     private $conn;
-	
 	public $is_fetch_assoc = true;
+	public $is_connected;
+	public $error;
+	public $errno;
 
 
 
@@ -40,9 +42,15 @@ class Queryable {
 
 		$conn = @mysqli_connect($host, $user, $pass, $db_name, $port);
 
-		@mysqli_set_charset($conn, "utf8");
-
-		$this->conn = $conn;
+		if (!$conn){
+			$this->is_connected = false;
+			$this->errno = mysqli_connect_errno();
+			$this->error = mysqli_connect_error();
+		} else {
+			$this->is_connected = true;
+			@mysqli_set_charset($conn, "utf8");
+			$this->conn = $conn;
+		}
     }
 
     public function query($sql, $assocKey = array()){
