@@ -16,6 +16,7 @@ sudo yum install -y mysql-community-server
 # to reset the user password:
 
 # $ sudo mysqld --initialize
+# $ sudo chown mysql:mysql -R /var/lib/mysql
 # $ sudo mysqld_safe --skip-grant-tables &
 # $ mysql -u root
 # mysql> update mysql.user set authentication_string = password("ot-mysql-default-pass"), password_expired = 'N', Host='%' where User='root';
