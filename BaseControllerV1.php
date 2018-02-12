@@ -26,49 +26,36 @@ class BaseControllerV1
 		die();
 	}
 
-	protected function is_admin(){
 
-		if (isset($_GET["user"]) && isset($_GET["pass"]) && $_GET["user"] === PHPWSConfig::$admin_username && $_GET["pass"] === PHPWSConfig::$admin_password)
-			return true;
+	/* Public Methods */
 
-		return false;
+	public function ping(){
+		return "pong";
+	}
+	
+	public function routing_stub(){
+		die("This routing points to a stub. In order to use this endpoint please extend the base controller and change the routing.");
 	}
 
-	protected function db_connect($db_conn_name){
-		require_once LIBS_DIR . DS . "mysql.php";
+	public function userinfo(){
+		$ip = $this->get_request_ip();
+		$ip_long = $this->get_request_ip_long();
+		$country_code = $this->get_request_country_code();
+		$detect = $this->get_mobile_detect();
+		$headers = $detect->getHttpHeaders();
 
-		$db = new DB(PHPWSConfig::$db_connections);
-
-		return $db->connect($db_conn_name);	// returns Queryable
+		echo "Your IP is " . $ip . "<br>And you country code is " . $country_code;
+		die(); 
 	}
 
-	protected function include_aws_api(){
-		if ($this->is_aws_api_included)
-			return;
+	/* End Public Methods */
 
-		require_once LIBS_DIR . DS . "aws_api_v3" . DS . "aws-autoloader.php";
 
-		$this->is_aws_api_included = true;
-	}
 
-	protected function get_empty_email_config($source = "", $returnPath = ""){
-		if ($source == "")
-			$source = PHPWSConfig::$AWS["default_source"];
+	/* Helper Methods */
 
-		if ($returnPath == "")
-			$returnPath = PHPWSConfig::$AWS["default_return_path"];
-
-		return array(
-			"subject" => "",
-			"body" => "",
-			"bodyText" => "",
-			"to" => array(),
-			"cc" => array(),
-			"bcc" => array(),
-			"replyTo" => array(),
-			"source" => $source,
-			"returnPath" => $returnPath
-		);
+	protected function sanitize($str){
+		return s($str);
 	}
 
 	protected function get_request_ip(){
@@ -120,8 +107,77 @@ class BaseControllerV1
 		return $this->mobile_detect;
 	}
 
-	protected function sanitize($str){
-		return s($str);
+	protected function is_admin(){
+
+		if (isset($_GET["user"]) && isset($_GET["pass"]) && $_GET["user"] === PHPWSConfig::$admin_username && $_GET["pass"] === PHPWSConfig::$admin_password)
+			return true;
+
+		return false;
+	}
+
+	protected function db_connect($db_conn_name){
+		require_once LIBS_DIR . DS . "mysql.php";
+
+		$db = new DB(PHPWSConfig::$db_connections);
+
+		return $db->connect($db_conn_name);	// returns Queryable
+	}
+
+	protected function http_mail(){
+
+		// override this method to enable a default http mailer
+
+		return true;
+	}
+
+	protected function rand_unsigned_int(){
+    
+		// mt_rand() can draw numbers between 0 and 2^31 - 1
+		// but an unsigned int is between 0 and 2^32 - 1
+
+		$max_val = getrandmax();
+		$num = mt_rand(0, $max_val) * 2;
+		$is_low_bound = mt_rand(0, $max_val) < ($max_val/2);
+    
+		if ($is_low_bound)
+			$num--;
+        
+		return $num;
+	}
+
+	/* End Helper Methods */
+
+
+	
+	/* AWS Methods */
+
+	protected function include_aws_api(){
+		if ($this->is_aws_api_included)
+			return;
+
+		require_once LIBS_DIR . DS . "aws_api_v3" . DS . "aws-autoloader.php";
+
+		$this->is_aws_api_included = true;
+	}
+
+	protected function get_empty_email_config($source = "", $returnPath = ""){
+		if ($source == "")
+			$source = PHPWSConfig::$AWS["default_source"];
+
+		if ($returnPath == "")
+			$returnPath = PHPWSConfig::$AWS["default_return_path"];
+
+		return array(
+			"subject" => "",
+			"body" => "",
+			"bodyText" => "",
+			"to" => array(),
+			"cc" => array(),
+			"bcc" => array(),
+			"replyTo" => array(),
+			"source" => $source,
+			"returnPath" => $returnPath
+		);
 	}
 
 	protected function aws_mail($emailConfig, $isLog = true){
@@ -192,24 +248,10 @@ class BaseControllerV1
 		return $is_sent;
 	}
 
-	protected function http_mail(){
-		if (!$this->is_admin())
-			throw new Exception("must be an admin");
+	/* End AWS Methods */
 
-		// override this method to enable a default http mailer
 
-		return true;
-	}
-
-	public function ping(){
-		return "pong";
-	}
-	
-	public function routing_stub(){
-		die("This routing points to a stub. In order to use this endpoint please extend the base controller and change the routing.");
-	}
-
-	
+		
 	/* Logging Methods */
 
 	protected function rolling_file_logger($topic = "", $data = "", $headers = "", $remark = "", $logs_basedir_vol_id = "", $mysql_data_types = "", $colDelimiter = "", $lineDelimiter = "", $fileExtenstion = "", $lineDateFormat = "", $dirNameDateFormat = "", $fileNameDateFormat = ""){
