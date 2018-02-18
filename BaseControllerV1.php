@@ -145,6 +145,99 @@ class BaseControllerV1
 		return $num;
 	}
 
+	protected function bit_string_to_hex($bits){
+		// $bits = "10110111";
+		// outputs "b7"
+
+		$num_of_bits = strlen($bits);
+
+		$c = $num_of_bits % 8;
+		if ($c > 0){
+			for ($i=0; $i<8-$c; $i++)
+				$bits = "0" . $bits;
+			$num_of_bits = strlen($bits);
+		}
+
+		$hex_str = "";
+		for ($i=$num_of_bits-1; $i>=0; $i-=8){
+			$n = 0;
+    
+			$n += $bits[$i-0] << 0;
+			$n += $bits[$i-1] << 1;
+			$n += $bits[$i-2] << 2;
+			$n += $bits[$i-3] << 3;
+			$n += $bits[$i-4] << 4;
+			$n += $bits[$i-5] << 5;
+			$n += $bits[$i-6] << 6;
+			$n += $bits[$i-7] << 7;
+    
+			$temp = dechex($n);
+
+			$hex_str = (strlen($temp) == 2 ? $temp : "0" . $temp) . $hex_str;
+		}
+
+		return $hex_str;
+	}
+
+	protected function hex_to_bit_string($hex_str){
+		$bits = "";
+		$hex_count = strlen($hex_str);
+		for ($i=$hex_count-1; $i>=0; $i--){
+
+			$val = base_convert($hex_str[$i], 16, 2) . "";
+
+			$c = 4 - strlen($val);
+			if ($c == 1)
+				$val = "0" . $val; 
+			elseif ($c == 2)
+				$val = "00" . $val;
+			elseif ($c == 3)
+				$val = "000" . $val;
+
+			$bits = $val . $bits;
+		}
+
+		return $bits;
+	}
+
+	protected function get_bit_id_from_hex($hex_str, $bit_id){
+		
+		// bit_id starts from 0
+		// returns -1 if bit_id is out of range
+		// otherwise returns 0 or 1
+
+		/*
+			example:
+				$hex_str = "b7";
+				$bit_id = 5;
+
+				$hex_str in bit string is "10110111"
+				bit id 0 from the right is 1
+				...
+				bit id 5 from the right is 1
+		*/
+
+		$hex_id = floor($bit_id / 4);
+		$hex_count = strlen($hex_str);
+    
+		if ($hex_count > $hex_id){
+        
+			// extract only relevant hex letter (4 bits)
+			$val = base_convert($hex_str[intval($hex_count - 1 - $hex_id)], 16, 2) . "";
+    
+			// get bit_id relative to $val, bit_id is between 0 and 3 inclusive
+			if ($bit_id > 3)
+				$bit_id = $bit_id % ($hex_id * 4);
+    
+			if ($bit_id >= strlen($val))
+				return 0;
+    
+			return $val[strlen($val) - 1 - $bit_id];
+		} else {
+			return -1;
+		}
+	}
+
 	/* End Helper Methods */
 
 
