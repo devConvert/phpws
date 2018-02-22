@@ -59,7 +59,7 @@ For example the file /var/www/html/includes/MainControllerV1.php:
 
 class MainControllerV1 extends BaseControllerV1{
     public function test(){
-        die();
+        die("test");
     }
 
     public function test2($p1, $p2){
