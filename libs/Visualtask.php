@@ -8,7 +8,7 @@ if (!function_exists("s")){
 	}
 }
 
-class visualtask { 
+class Visualtask { 
 
 	public $db = null;	// Queryable
 	public $presets_path = null;
