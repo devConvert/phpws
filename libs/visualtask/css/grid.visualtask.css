@@ -1,0 +1,75 @@
+table.vtg-grid select {
+	width: 100px;
+}
+
+tr.vtg-fieldselector-hide, tr.vtg-advanced-hide, tr.vtg-filter-hide {
+	display: none;
+}
+
+.vtg-header-functionselect, .vtg-header-groupidselect, .vtg-header-groupfunctionselect, .vtg-fieldselector-fieldlistcontainer {
+	text-align: center;
+}
+
+.vtg-fieldselector-fieldlist {
+	height: 250px;
+	width: 200px !important;
+}
+
+.vtg-header {
+	text-align: center;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.vtg-sortable {
+	cursor: pointer;
+}
+
+.vtg-top-aggregation {
+	text-align: center;
+	font-weight: bold;
+}
+
+.vtg-bottom-aggregation {
+	text-align: center;
+	font-weight: bold;
+}
+
+.vtg-pager {
+	margin: 0 auto;
+}
+
+.vtg-pager-left, .vtg-pager-right {
+	font-size: 20px;
+}
+
+.vtg-header {
+	background-repeat: no-repeat;
+	background-position: right center;
+	border-left: 1px solid rgb(233,236,239);
+	background-color: rgb(239,239,239);
+}
+
+.vtg-top-aggregation,.vtg-bottom-aggregation {
+	
+}
+
+tr .vtg-header:last-child, tr .vtg-header-agg:last-child {
+	border-right: 1px solid rgb(233,236,239);
+}
+
+.vtg-header.vtg-orderby-asc {
+	background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgdmlld0JveD0iMCAwIDE0IDE0Ij48cGF0aCBkPSJNMTQgOS41TDExLjUgMTIgNyA3LjUgMi41IDEyIDAgOS41bDctN3oiLz48L3N2Zz4=);
+}
+
+.vtg-header.vtg-orderby-desc {
+	background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgdmlld0JveD0iMCAwIDE0IDE0Ij48cGF0aCBkPSJNMTQgNWwtMi41LTIuNS00LjUgNC41LTQuNS00LjVMMCA1IDcgMTJ6Ii8+PC9zdmc+);
+}
+
+.vtg-header:not(.vtg-orderby-asc):not(.vtg-orderby-desc){
+	background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMiIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMCAwIDE0IDIwIj48cGF0aCBkPSJNMTQgMTNsLTIuNS0yLjVMNyAxNWwtNC41LTQuNUwwIDEzbDcgN3pNMTQgNy41TDExLjUgMTAgNyA1LjUgMi41IDEwIDAgNy41bDctN3oiLz48L3N2Zz4=);
+}
