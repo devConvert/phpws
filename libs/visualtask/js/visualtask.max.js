@@ -21,7 +21,7 @@ var VisualTask = (function(){
 
 
 
-	function _query(options){
+	function _query(options, cbSuccess){
 
 		// send options with only the queries object
 
@@ -38,6 +38,9 @@ var VisualTask = (function(){
 				el.innerHTML = "";
 			}
 		}
+
+		if (typeof cbSuccess !== "function")
+			cbSuccess = function(){};
 
 		var xhr = new XMLHttpRequest();
 		
@@ -83,7 +86,9 @@ var VisualTask = (function(){
 					options.queries = obj.queries;
 					options.results = obj.results;
 
-					return _render(options);
+					var val = _render(options);
+					cbSuccess();
+					return val;
 
 				} else {
 
