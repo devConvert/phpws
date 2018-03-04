@@ -21,7 +21,7 @@ var VisualTask = (function(){
 
 
 
-	function _query(options, cbSuccess){
+	function _query(options, cbSuccess, cbFail){
 
 		// send options with only the queries object
 
@@ -41,6 +41,9 @@ var VisualTask = (function(){
 
 		if (typeof cbSuccess !== "function")
 			cbSuccess = function(){};
+
+		if (typeof cbFail !== "function")
+			cbFail = function(){};
 
 		var xhr = new XMLHttpRequest();
 		
@@ -78,6 +81,7 @@ var VisualTask = (function(){
 							}
 						}
 						
+						cbFail();
 					}
 
 					if (typeof obj === "undefined" || typeof obj.queries === "undefined" || typeof obj.results === "undefined")
@@ -93,6 +97,7 @@ var VisualTask = (function(){
 				} else {
 
 					console.log('Error: ' + xhr.status); // An error occurred during the request.
+					cbFail();
 					return false;
 
 				}

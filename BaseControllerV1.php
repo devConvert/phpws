@@ -96,6 +96,18 @@ class BaseControllerV1
 		return $this->country_code;
 	}
 
+	protected function get_ip_country_code($ip){
+
+		if ($this->geoip == ""){
+			if (!function_exists("geoip_country_code_by_addr"))
+				include_once LIBS_DIR . DS . "geoip.php";
+
+			$this->geoip = geoip_open(LIBS_DIR . DS . "geoip.dat", GEOIP_MEMORY_CACHE);
+		}
+
+		return geoip_country_code_by_addr($this->geoip, $ip);
+	}	
+
 	protected function get_mobile_detect(){
 		if ($this->mobile_detect == ""){
 			if (!class_exists("Mobile_Detect"))
