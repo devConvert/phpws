@@ -76,6 +76,8 @@ class BaseControllerV1
 		$ip_long = ip2long($this->get_request_ip());
 		if ($ip_long === false)
 			$this->ip_long = 0;
+		else
+			$this->ip_long = $ip_long;
 
 		return $this->ip_long;
 	}
