@@ -3,7 +3,7 @@
 class DB
 {
 	private $qs = array();
-	public $db_connections;
+	public $db_connections = array();
 
 
 
@@ -12,10 +12,10 @@ class DB
 	}
 
 	public function connect($db_conn_name){
-		if (array_key_exists($db_conn_name, $this->qs))
+		if (array_key_exists($db_conn_name, $this->qs) && $this->qs[$db_conn_name]->is_connected)
 			return $this->qs[$db_conn_name];
 
-		if (!array_key_exists($db_conn_name, $this->db_connections))
+		if (!is_array($this->db_connections) || !array_key_exists($db_conn_name, $this->db_connections))
 			throw new Exception("db conn not found");
 
 		$conn = $this->db_connections[$db_conn_name];
@@ -31,10 +31,9 @@ class DB
 class Queryable {
     private $conn;
 	public $is_fetch_assoc = true;
-	public $is_connected;
+	public $is_connected = false;
 	public $error;
 	public $errno;
-
 
 
 
@@ -106,9 +105,9 @@ class Queryable {
 		return $this->query($sql, $assocKey);
 	}
 
-	public function close()
-	{
+	public function close(){
 		@mysqli_close($this->conn);
+		$this->is_connected = false;
 	}
 
     public function getErrorNum(){
