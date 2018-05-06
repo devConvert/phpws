@@ -1,5 +1,75 @@
 <?php
 
+function bin_string_to_offset_arr(&$bin_string, $highest_bit_offset, $bit_val = true){
+
+    $byte_string = unpack("C*", $bin_string);
+
+    $offset = 0;
+    $byte_id = 1;   // unpack's byte array starts from id 1
+    $i = 7;
+    $arr = array();
+
+    if ($bit_val){
+
+        while ($offset <= $highest_bit_offset){
+
+            if ( isset($byte_string[$byte_id]) && (($byte_string[$byte_id] & (1 << $i)) > 0) )
+                $arr[] = $offset;
+
+            $offset++;
+            $i--;
+
+            if ($i == -1){
+                $i = 7;
+                $byte_id++;
+            }
+        }
+
+    } else {
+
+        while ($offset <= $highest_bit_offset){
+
+            if ( isset($byte_string[$byte_id]) && (($byte_string[$byte_id] & (1 << $i)) == 0) )
+                $arr[] = $offset;
+
+            $offset++;
+            $i--;
+
+            if ($i == -1){
+                $i = 7;
+                $byte_id++;
+            }
+        }
+
+    }
+
+    return $arr;    
+}
+
+function offset_arr_to_bin_string(&$offset_arr, $highest_bit_offset){
+    
+    $bytes = array();
+    
+    $highest_byte_id = floor($highest_bit_offset/8);
+    for ($i=0; $i<=$highest_byte_id; $i++)
+        $bytes[$i] = 0;
+    
+    foreach ($offset_arr as $k => $offset){
+        $byte_id = floor($offset/8);
+        $i = 7 - ($offset - $byte_id*8);
+        $byte = 1 << $i;
+        
+        $bytes[$byte_id] += $byte;
+    }
+    
+    $packed = "";
+    foreach($bytes as $k => $byte){
+        $packed .= pack("C*", $byte);
+    }
+    
+    return $packed;
+}
+
 function bit_string_to_hex($bits){
 	// $bits = "10110111";
 	// outputs "b7"
