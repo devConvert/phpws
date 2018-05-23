@@ -63,9 +63,12 @@ if (!defined("IS_PROGRAM")){
 			$params[] = s(urldecode($v));
 
 		$reflectionMethod = new ReflectionMethod($ctrl_classname, $method);
+
 		$return_val = $reflectionMethod->invokeArgs(new $ctrl_classname(), $params);
 		$is_ws_error = false;
+
 	} catch (Exception $e){
+		
 		$return_val = $e->getMessage();
 		$is_ws_error = true;
 	}
