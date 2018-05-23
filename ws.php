@@ -21,6 +21,12 @@ if (!defined("IS_PROGRAM")){
 	if (isset($_SERVER["QUERY_STRING"]) && strlen($_SERVER["QUERY_STRING"]) > 0)
 		$uri = str_replace("?" . $_SERVER["QUERY_STRING"], "", $uri);
 
+	if ($uri === "/ws.php"){
+		header("HTTP/1.1 301 Moved Permanently"); 
+		header("Location: /index"); 
+		exit();
+	}
+
 	$route = explode("/", $uri);
 
 	array_shift($route); // empty
