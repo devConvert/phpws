@@ -27,13 +27,21 @@ if (!defined("IS_PROGRAM")){
 
 	$routing_key = array_shift($route);
 
+	if ($routing_key === "")
+		$routing_key = "index";
+
 	try {
+
 		if (array_key_exists($routing_key, PHPWSConfig::$routing)){
+
 			$route = PHPWSConfig::$routing[$routing_key];
+
 			$ws_ver = $route[0];
 			$ctrl = $route[1];
 			$method = $route[2];
+
 		} else {
+
 			$ws_ver = array_shift($route);
 
 			if (count($route) < 2)
@@ -45,6 +53,7 @@ if (!defined("IS_PROGRAM")){
 				throw new Exception("Not allowed");
 
 			$method = strtolower(s(urldecode(array_shift($route))));
+
 		}
 
 		$ctrl_classname = get_ctrl_classname($ws_ver, $ctrl);
