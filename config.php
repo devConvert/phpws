@@ -38,6 +38,7 @@ class PHPWSConfig {
 		"log" => array("1", "base", "routing_stub"),
 		"mail" => array("1", "base", "routing_stub"),
 		"admin" => array("1", "base", "routing_stub"),
+		"index" => array("1", "base", "routing_stub"),
 		"ping" => array("1", "base", "ping")
 	);
 
