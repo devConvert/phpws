@@ -41,7 +41,7 @@ class Queryable {
 
 		$conn = @mysqli_connect($host, $user, $pass, $db_name, $port);
 
-		if (!$conn){
+		if (!$conn || $conn === null){
 			$this->is_connected = false;
 			$this->errno = mysqli_connect_errno();
 			$this->error = mysqli_connect_error();
