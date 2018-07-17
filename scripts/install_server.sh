@@ -32,6 +32,7 @@ sudo groupadd devgroup
 sudo usermod -a -G devgroup nginx
 sudo chown -R root:devgroup /var/www/html
 sudo chmod 775 /var/www/html
+sudo chown nginx:nginx /var/lib/php/session
 
 # start the system
 sudo service nginx start
