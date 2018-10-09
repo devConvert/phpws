@@ -4,7 +4,7 @@
 # after a fresh install of a new virtual machine checkout the phpws project into /var/www/html
 # and then run /var/www/html/scripts/install_server.sh
 
-# for centos 6.x
+# for centos 6.x on aws
 
 
 sudo yum update -y
