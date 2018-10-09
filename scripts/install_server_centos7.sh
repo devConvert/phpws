@@ -2,7 +2,7 @@
 
 
 # after a fresh install of a new virtual machine checkout the phpws project into /var/www/html
-# and then run /var/www/html/scripts/install_server.sh
+# and then run /var/www/html/scripts/install_server_centos7.sh
 
 # for centos 7.x
 
