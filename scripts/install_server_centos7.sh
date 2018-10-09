@@ -4,7 +4,7 @@
 # after a fresh install of a new virtual machine checkout the phpws project into /var/www/html
 # and then run /var/www/html/scripts/install_server.sh
 
-# for centos 7.x on linode
+# for centos 7.x
 
 
 sudo yum update -y
@@ -34,11 +34,6 @@ sudo usermod -a -G devgroup nginx
 sudo chown -R root:devgroup /var/www/html
 sudo chmod 775 /var/www/html
 sudo chown nginx:nginx /var/lib/php/session
-
-# open http/https ports on firewall
-sudo firewall-cmd --add-service=http --permanent
-sudo firewall-cmd --add-service=https --permanent
-sudo firewall-cmd --reload
 
 # start the system
 sudo service nginx start
