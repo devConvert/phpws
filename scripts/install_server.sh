@@ -4,6 +4,8 @@
 # after a fresh install of a new virtual machine checkout the phpws project into /var/www/html
 # and then run /var/www/html/scripts/install_server.sh
 
+# for centos 6.x
+
 
 sudo yum update -y
 sudo yum-config-manager --enable epel
