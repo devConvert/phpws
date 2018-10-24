@@ -11,8 +11,9 @@ class DB
 		$this->db_connections = $db_connections;
 	}
 
-	public function connect($db_conn_name){
-		if (array_key_exists($db_conn_name, $this->qs) && $this->qs[$db_conn_name]->is_connected)
+	public function connect($db_conn_name, $is_force_new = false){
+		
+		if ($is_force_new !== true && array_key_exists($db_conn_name, $this->qs) && $this->qs[$db_conn_name]->is_connected)
 			return $this->qs[$db_conn_name];
 
 		if (!is_array($this->db_connections) || !array_key_exists($db_conn_name, $this->db_connections))
