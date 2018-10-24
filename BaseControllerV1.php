@@ -129,12 +129,14 @@ class BaseControllerV1
 		return false;
 	}
 
-	protected function db_connect($db_conn_name){
+	protected function db_connect($db_conn_name, $is_force_new = false){
+		
 		require_once LIBS_DIR . DS . "mysql.php";
 
 		$db = new DB(PHPWSConfig::$db_connections);
 
-		return $db->connect($db_conn_name);	// returns Queryable
+		// returns Queryable
+		return $db->connect($db_conn_name, $is_force_new);
 	}
 
 	protected function http_mail(){
