@@ -7,8 +7,11 @@
 
 #!/bin/sh
 
-
+# centos6:
 sudo rpm -ivh https://dev.mysql.com/get/mysql57-community-release-el6-11.noarch.rpm
+
+
+
 sudo yum install -y mysql-community-server
 sudo mysqld --initialize
 sudo chown mysql:mysql -R /var/lib/mysql
