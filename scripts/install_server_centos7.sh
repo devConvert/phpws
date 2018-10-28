@@ -10,6 +10,9 @@
 sudo yum update -y
 sudo yum install -y epel-release
 
+# on amazone ec2
+sudo amazon-linux-extras install epel
+
 # update latest yum
 sudo rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm
 
