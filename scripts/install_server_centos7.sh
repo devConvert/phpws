@@ -10,7 +10,7 @@
 sudo yum update -y
 sudo yum install -y epel-release
 
-# on amazone ec2
+# on amazon ec2
 sudo amazon-linux-extras install epel -y
 
 # update latest yum
