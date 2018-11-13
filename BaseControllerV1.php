@@ -735,39 +735,41 @@ class BaseControllerV1
 		return 0;
 	}
 
+
+	/*
 	protected function file_logger_query($sql = ""){
-		/*
-			requires a connection to mysql
-
-			$mysql_data_types contains an associative array:
-			[
-				"col1" => "mysql data type"
-				...
-			]
-
-			e.g.:
-			[
-				"col1" => "int",
-				"col2" => "varchar(20)"
-			]
-		*/
+		
+		//	requires a connection to mysql
+		//
+		//	$mysql_data_types contains an associative array:
+		//	[
+		//		"col1" => "mysql data type"
+		//		...
+		//	]
+		//
+		//	e.g.:
+		//	[
+		//		"col1" => "int",
+		//		"col2" => "varchar(20)"
+		//	]
+		
 
 		// sql variables
 		$select = array();					// contains ONLY the header names without the sql functions (every cell contains a single col and not an array like it should as some functions take more than one col)
 		$select_funcs = array();			// contains ONLY the sql functions to be executed on the header value, including aggregative functions: select_id => func_id. THERE MUST BE A func_id FOR EVERY select_id
 		$select_quotes = array();			// THERE MUST BE A boolean FOR EVERY select_id
 		
-		/*
-			func_ids:
-			[
-				0 => nothing,		f(x) = x
-				1 => count,			f(x) = 1		
-				2 => sum,			f(x) = Sx
-				3 => max,			f(x) = max(x)
-				4 => min			f(x) = min(x)
-				5 => avg			f(x) = avg(X)
-			]
-		*/
+		
+		//	func_ids:
+		//	[
+		//		0 => nothing,		f(x) = x
+		//		1 => count,			f(x) = 1		
+		//		2 => sum,			f(x) = Sx
+		//		3 => max,			f(x) = max(x)
+		//		4 => min			f(x) = min(x)
+		//		5 => avg			f(x) = avg(X)
+		//	]
+		
 
 		$alias = array();
 		$log_basedir_id = 0;
@@ -1007,14 +1009,14 @@ class BaseControllerV1
 			$parse_sql_group_by($start_id, $end_id);
 		}
 
-		/*
-		echo $topic . "\n";
-		print_r($select);
-		print_r($alias);
-		print_r($select_funcs);
-		print_r($group_by);
-		die();
-		*/
+		
+		//echo $topic . "\n";
+		//print_r($select);
+		//print_r($alias);
+		//print_r($select_funcs);
+		//print_r($group_by);
+		//die();
+		
 
 		// general variables
 		$headers = array();
@@ -1510,28 +1512,28 @@ class BaseControllerV1
 		return $output;
 
 
-		/*
+		
 
-		select col1, col2, col3, sum(col4) as sum_col4, log_dt(), max(col5), min(col6)   -- , avg(col2), rank(col1, col2)
-		from 0.topic1 between '2017-01-01 00:00:00' and '2017-01-02' {into topic1_output_db}
-		where (col1 > ? and col2 < '2017-09-01 00:00:00') or col5 = 'a'
-		group by col1, col2, col3
+		//select col1, col2, col3, sum(col4) as sum_col4, log_dt(), max(col5), min(col6)   -- , avg(col2), rank(col1, col2)
+		//from 0.topic1 between '2017-01-01 00:00:00' and '2017-01-02' {into topic1_output_db}
+		//where (col1 > ? and col2 < '2017-09-01 00:00:00') or col5 = 'a'
+		//group by col1, col2, col3
 
-		reading order is always ordered by the log datetime itself
-		so the rank function ranks according to when log is received
-		count(*) can only be on * and nothing else and automatically added (as group_count) when there's group by cols - can't put in sql as it is added automatically!
-		sum(colX) can be used only when there's group by cols
-		log_dt() produces the log datetime
-		if casting doesn't take place then the col is considered as string 
+		//reading order is always ordered by the log datetime itself
+		//so the rank function ranks according to when log is received
+		//count(*) can only be on * and nothing else and automatically added (as group_count) when there's group by cols - can't put in sql as it is added automatically!
+		//sum(colX) can be used only when there's group by cols
+		//log_dt() produces the log datetime
+		//if casting doesn't take place then the col is considered as string 
 
-		additional functions: year(), month(), day(), hour(), minute(), second()
+		//additional functions: year(), month(), day(), hour(), minute(), second()
 
-		check the topic exists on $log_basedir_id
-		load the meta config file
-		get the col names from the headers in meta file
-		check that the $select cols exist in 
+		//check the topic exists on $log_basedir_id
+		//load the meta config file
+		//get the col names from the headers in meta file
+		//check that the $select cols exist in 
 
-		*/
+		
 
 	}
 
@@ -1620,6 +1622,8 @@ class BaseControllerV1
 
 		return $filename;
 	}
+
+	*/
 
 	/* End Logging Methods */
 
