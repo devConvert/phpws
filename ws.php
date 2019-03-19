@@ -75,8 +75,9 @@ if (!defined("IS_PROGRAM")){
 
 	} catch (Exception $e){
 		
-		$return_val = $e->getMessage();
+		$return_val = '{"msg":' . $e->getMessage() . ',"trc":' . $e->getTraceAsString() . '}';
 		$is_ws_error = true;
+		
 	}
 
 	header('Content-Type: application/json');
