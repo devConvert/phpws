@@ -75,7 +75,8 @@ if (!defined("IS_PROGRAM")){
 
 	} catch (Exception $e){
 		
-		$return_val = '{"msg":' . $e->getMessage() . ',"trc":' . $e->getTraceAsString() . '}';
+		//$return_val = '{"msg":' . $e->getMessage() . ',"trc":' . $e->getTraceAsString() . '}';
+		$return_val = $e->getMessage();
 		$is_ws_error = true;
 		
 	}
