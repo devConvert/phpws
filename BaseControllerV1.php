@@ -5,6 +5,7 @@ if (!defined("IS_ALLOW"))
 
 use Aws\Ses\SesClient;
 use GeoIp2\Database\Reader;
+use MaxMind\Db\Reader;
 
 class BaseControllerV1{
 
@@ -51,10 +52,11 @@ class BaseControllerV1{
 
 	public function test_geolite2_country(){
 
-		include_once LIBS_DIR . DS . "geolite2" . DS . "loader.php";
+		include_once LIBS_DIR . DS . "maxmind" . DS . "autoload.php";
+		include_once LIBS_DIR . DS . "geolite2" . DS . "autoload.php";
 
-		$reader = GetGeoLite2Reader();
-		
+		$reader = new GeoIp2\Database\Reader(LIBS_DIR . DS . "GeoLite2-Country.mmdb");
+
 		$record = $reader->country('128.101.101.101');
 
 		echo "<pre>";

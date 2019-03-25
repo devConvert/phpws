@@ -26,11 +26,3 @@ include_once LIBS_DIR . DS . "geolite2" . DS . "Record" . DS . "Postal.php";
 include_once LIBS_DIR . DS . "geolite2" . DS . "Record" . DS . "RepresentedCountry.php";		
 include_once LIBS_DIR . DS . "geolite2" . DS . "Record" . DS . "Subdivision.php";		
 include_once LIBS_DIR . DS . "geolite2" . DS . "Record" . DS . "Traits.php";		
-
-function GetGeoLite2Reader(){
-
-    $reader = new GeoIp2\Database\Reader(LIBS_DIR . DS . "geolite2" . DS . "GeoLite2-Country.mmdb");
-
-    return $reader;
-
-}
