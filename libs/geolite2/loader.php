@@ -8,6 +8,7 @@ include_once LIBS_DIR . DS . "geolite2" . DS . "Database" . DS . "Reader.php";
 
 include_once LIBS_DIR . DS . "geolite2" . DS . "Exception" . DS . "GeoIp2Exception.php";
 include_once LIBS_DIR . DS . "geolite2" . DS . "Exception" . DS . "AddressNotFoundException.php";
+include_once LIBS_DIR . DS . "geolite2" . DS . "Exception" . DS . "HttpException.php";
 include_once LIBS_DIR . DS . "geolite2" . DS . "Exception" . DS . "InvalidRequestException.php";
 include_once LIBS_DIR . DS . "geolite2" . DS . "Exception" . DS . "OutOfQueriesException.php";
 
