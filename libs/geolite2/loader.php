@@ -15,8 +15,8 @@ include_once LIBS_DIR . DS . "geolite2" . DS . "Exception" . DS . "OutOfQueriesE
 include_once LIBS_DIR . DS . "geolite2" . DS . "Model" . DS . "AbstractModel.php";
 include_once LIBS_DIR . DS . "geolite2" . DS . "Model" . DS . "Country.php";
 
-include_once LIBS_DIR . DS . "geolite2" . DS . "Record" . DS . "AbstractPlaceRecord.php";
 include_once LIBS_DIR . DS . "geolite2" . DS . "Record" . DS . "AbstractRecord.php";
+include_once LIBS_DIR . DS . "geolite2" . DS . "Record" . DS . "AbstractPlaceRecord.php";
 include_once LIBS_DIR . DS . "geolite2" . DS . "Record" . DS . "City.php";
 include_once LIBS_DIR . DS . "geolite2" . DS . "Record" . DS . "Continent.php";
 include_once LIBS_DIR . DS . "geolite2" . DS . "Record" . DS . "Country.php";
