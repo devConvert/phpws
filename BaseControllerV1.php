@@ -4,9 +4,10 @@ if (!defined("IS_ALLOW"))
 	die();
 
 use Aws\Ses\SesClient;
+use GeoIp2\Database\Reader;
 
-class BaseControllerV1
-{
+class BaseControllerV1{
+
 	protected $ip = "";
 	protected $ip_long = "";
 	protected $geoip = "";
@@ -46,6 +47,20 @@ class BaseControllerV1
 
 		echo "Your IP is " . $ip . "<br>And you country code is " . $country_code;
 		die(); 
+	}
+
+	public function test_geolite2_country(){
+
+		include_once LIBS_DIR . DS . "geolite2" . DS . "loader.php";
+
+		$reader = GetGeoLite2Reader();
+		
+		$record = $reader->country('128.101.101.101');
+
+		echo "<pre>";
+		var_dump($record);
+		die();
+
 	}
 
 	/* End Public Methods */
