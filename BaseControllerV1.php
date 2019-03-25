@@ -45,7 +45,7 @@ class BaseControllerV1{
 		$detect = $this->get_mobile_detect();
 		$headers = $detect->getHttpHeaders();
 
-		echo "Your IP is " . $ip . "<br>And you country code is " . $country_code;
+		echo "Your IP is " . $ip . "<br>And your country code is " . $country_code;
 		die(); 
 	}
 
