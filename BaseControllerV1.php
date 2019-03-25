@@ -85,6 +85,9 @@ class BaseControllerV1{
 
 	protected function get_request_country_code(){
 
+		if ($this->country_code != "")
+			return $this->country_code;
+
 		include_once LIBS_DIR . DS . "maxmind" . DS . "autoload.php";
 		include_once LIBS_DIR . DS . "geolite2" . DS . "autoload.php";
 
@@ -92,7 +95,11 @@ class BaseControllerV1{
 
 		$record = $reader->country($this->get_request_ip());
 
-		return $record->country->isoCode;
+		$this->country_code = strtoupper($record->country->isoCode);
+
+		return $this->country_code;
+
+
 
 		///// old geoip
 
