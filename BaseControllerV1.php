@@ -57,9 +57,10 @@ class BaseControllerV1{
 		$reader = new GeoIp2\Database\Reader(LIBS_DIR . DS . "GeoLite2-Country.mmdb");
 
 		$record = $reader->country("193.82.239.6");
+		echo $record->country->iso_code;
 
-		echo "<pre>";
-		var_dump($record);
+		//echo "<pre>";
+		//var_dump($record);
 		die();
 
 	}
