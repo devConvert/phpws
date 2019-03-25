@@ -49,22 +49,6 @@ class BaseControllerV1{
 		die(); 
 	}
 
-	public function test_geolite2_country(){
-
-		include_once LIBS_DIR . DS . "maxmind" . DS . "autoload.php";
-		include_once LIBS_DIR . DS . "geolite2" . DS . "autoload.php";
-
-		$reader = new GeoIp2\Database\Reader(LIBS_DIR . DS . "GeoLite2-Country.mmdb");
-
-		$record = $reader->country("193.82.239.6");
-		echo $record->country->isoCode;
-
-		//echo "<pre>";
-		//var_dump($record);
-		die();
-
-	}
-
 	/* End Public Methods */
 
 
@@ -100,6 +84,18 @@ class BaseControllerV1{
 	}
 
 	protected function get_request_country_code(){
+
+		include_once LIBS_DIR . DS . "maxmind" . DS . "autoload.php";
+		include_once LIBS_DIR . DS . "geolite2" . DS . "autoload.php";
+
+		$reader = new GeoIp2\Database\Reader(LIBS_DIR . DS . "GeoLite2-Country.mmdb");
+
+		$record = $reader->country($this->get_request_ip());
+
+		return $record->country->isoCode;
+
+		///// old geoip
+
 		if ($this->country_code != "")
 			return $this->country_code;
 
