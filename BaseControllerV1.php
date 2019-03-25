@@ -5,7 +5,6 @@ if (!defined("IS_ALLOW"))
 
 use Aws\Ses\SesClient;
 use GeoIp2\Database\Reader;
-use MaxMind\Db\Reader;
 
 class BaseControllerV1{
 
