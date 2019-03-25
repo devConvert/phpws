@@ -7,3 +7,4 @@ include_once LIBS_DIR . DS . "maxmind" . DS . "db" . DS . "Reader" . DS . "Inval
 include_once LIBS_DIR . DS . "maxmind" . DS . "db" . DS . "Reader" . DS . "Metadata.php";
 include_once LIBS_DIR . DS . "maxmind" . DS . "db" . DS . "Reader" . DS . "Util.php";
 
+include_once LIBS_DIR . DS . "maxmind" . DS . "db" . DS . "Reader.php";
