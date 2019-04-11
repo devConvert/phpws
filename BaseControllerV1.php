@@ -116,18 +116,35 @@ class BaseControllerV1{
 		$this->country_code = geoip_country_code_by_addr($this->geoip, $this->get_request_ip());
 		
 		return $this->country_code;
+		
 	}
 
 	protected function get_ip_country_code($ip){
 
+		include_once LIBS_DIR . DS . "maxmind" . DS . "autoload.php";
+        	include_once LIBS_DIR . DS . "geolite2" . DS . "autoload.php";
+        
+        	$reader = new GeoIp2\Database\Reader(LIBS_DIR . DS . "GeoLite2-Country.mmdb");
+        
+        	$record = $reader->country($ip);
+
+        	$country_code = strtoupper($record->country->isoCode);
+
+        	return $country_code;
+        
+
+        	///// old geoip
+
 		if ($this->geoip == ""){
-			if (!function_exists("geoip_country_code_by_addr"))
-				include_once LIBS_DIR . DS . "geoip.php";
 
-			$this->geoip = geoip_open(LIBS_DIR . DS . "geoip.dat", GEOIP_MEMORY_CACHE);
-		}
-
+            		if (!function_exists("geoip_country_code_by_addr"))
+            			include_once LIBS_DIR . DS . "geoip.php";
+                
+            		$this->geoip = geoip_open(LIBS_DIR . DS . "geoip.dat", GEOIP_MEMORY_CACHE);
+        	}
+        
 		return geoip_country_code_by_addr($this->geoip, $ip);
+		
 	}	
 
 	protected function get_mobile_detect(){
